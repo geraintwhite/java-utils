@@ -3,9 +3,9 @@ package Utils;
 import java.util.HashMap;
 
 public abstract class DataItem {
-  protected HashMap<String, Object> map;
+  protected HashMap<String, Comparable> map;
 
-  public Object get(String parameter) {
+  public Comparable get(String parameter) {
     return this.map.get(parameter);
   }
 }
