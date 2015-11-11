@@ -25,9 +25,9 @@ public class DataList<E extends DataItem> extends ArrayList<E> {
     });
   }
 
-  @SuppressWarnings("unchecked")
   public DataList<E> sort(final String parameter) {
     Collections.sort(this, new Comparator<E>() {
+      @SuppressWarnings("unchecked")
       public int compare(E e1, E e2) {
         return e1.get(parameter).compareTo(e2.get(parameter));
       }
