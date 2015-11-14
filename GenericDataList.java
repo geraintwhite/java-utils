@@ -11,6 +11,14 @@ public abstract class GenericDataList<T extends GenericDataList<T, E>, E extends
   protected abstract T getThis();
   protected abstract T newInstance();
 
+  public T clone() {
+    T cloned = newInstance();
+    for (E element : getThis()) {
+      cloned.add(element);
+    }
+    return cloned;
+  }
+
   public T filter(Matcher<E> matcher) {
     T list = newInstance();
     for (E element : getThis()) {
@@ -30,8 +38,9 @@ public abstract class GenericDataList<T extends GenericDataList<T, E>, E extends
   }
 
   public T sort(Comparator<E> comparator) {
-    Collections.sort(getThis(), comparator);
-    return getThis();
+    T sorted = getThis().clone();
+    Collections.sort(sorted, comparator);
+    return sorted;
   }
 
   public T sort(final String parameter) {
@@ -44,19 +53,18 @@ public abstract class GenericDataList<T extends GenericDataList<T, E>, E extends
   }
 
   public T reverse() {
-    Collections.reverse(getThis());
-    return getThis();
+    T reversed = getThis().clone();
+    Collections.reverse(reversed);
+    return reversed;
   }
 
   public String toTable(String[] parameters) {
     String[][] data = new String[getThis().size()][parameters.length];
-
     for (int i = 0; i < getThis().size(); i++) {
       for (int j = 0; j < parameters.length; j++) {
         data[i][j] = getThis().get(i).get(parameters[j]).toString();
       }
     }
-
     return new Table(parameters, data).toString();
   }
 }
