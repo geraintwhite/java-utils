@@ -1,11 +1,13 @@
 package Utils;
 
+import java.util.Scanner;
 import java.text.DecimalFormat;
 
 public class Utils {
   public static String getInput(String message) {
+    Scanner scan = new Scanner(System.in);
     System.out.print(message);
-    return System.console().readLine();
+    return scan.nextLine();
   }
 
   public static double getNumberInput(String message) {
