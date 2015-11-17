@@ -3,9 +3,6 @@ package Utils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import Utils.Matcher;
-import Utils.DataItem;
-import Utils.Table;
 
 public abstract class GenericDataList<T extends GenericDataList<T, E>, E extends DataItem> extends ArrayList<E> {
   protected abstract T getThis();
